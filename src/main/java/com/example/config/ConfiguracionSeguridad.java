@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
@@ -35,11 +36,13 @@ public class ConfiguracionSeguridad extends WebSecurityConfigurerAdapter {
                 .antMatchers("/zona_admin/**")
                 .hasAnyRole("ADMIN")
                 .and()
-                .formLogin()
-                    .loginPage("/login") //indicando la ruta que estaremos utilizando.
-                    .failureUrl("/login?error")
-                    .permitAll()
-                .and()
-                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
+
+
+
+
+                .csrf()
+                .disable()
+                .exceptionHandling().authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/login")).accessDeniedPage("/accessDenied")
+        ;
     }
 }

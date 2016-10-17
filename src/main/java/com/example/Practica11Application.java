@@ -33,7 +33,7 @@ public class Practica11Application {
 		usuario.setUsername("palomo123");
 		usuarioRepository.save(usuario);*/
 	}
-	@Service
+/*	@Service
 	public static class MyService {
 		public String sayHi() {
 			return "Hello Spring Initializr!";
@@ -52,6 +52,5 @@ public class Practica11Application {
 		protected void init(VaadinRequest request) {
 			setContent(new Label(myService.sayHi()));
 		}
-
-	}
+	}*/
 }
