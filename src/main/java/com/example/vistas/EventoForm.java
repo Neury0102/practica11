@@ -62,6 +62,7 @@ class EventoForm extends FormLayout{
                 evento.setNombre(nombre.getValue());
                 evento.setFechaInicio(fecha.getValue());
                 evento.setFechaFin(cal.getTime());
+                evento.setNotificacionEnviada(false);
                 service.creacionEvento(evento);
                 calendarioUI.container.addBean(evento);
 

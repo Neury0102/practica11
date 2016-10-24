@@ -16,11 +16,21 @@ public class Usuario {
     private String apellido = "";
     private String password= "";
     private String correo="";
+    private String email;
+
     @Column(name = "enabled", nullable = false, columnDefinition = "int default 1")
     private int enabled = 1;
 
     public int getEnabled() {
         return enabled;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setEnabled(int enabled) {

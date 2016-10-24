@@ -29,11 +29,13 @@ class PruebaCalendario extends UI {
 
 
     //Utilizando el calendario.
-    public Calendar calendario;
+    protected Calendar calendario;
     @Autowired
     EventoServices eventoServices;
     @Autowired
     private EventoForm form;
+
+    
 
     BeanItemContainer container;
     @Override
@@ -53,17 +55,32 @@ class PruebaCalendario extends UI {
         calendario.setContainerDataSource(container, "nombre",
                 "descripcion", "fechaInicio", "fechaFin","styleName");
 
+        Button save = new Button("Guardar calendario");
+
+        save.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                for(Object o: container.getItemIds() ){
+                    Evento e = (Evento) o;
+                    eventoServices.creacionEvento(e);
+                }
+            }
+        });
 
 
 
 
 
 
+
+
+        VerticalLayout vl = new VerticalLayout();
+        vl.addComponent(save);
         HorizontalLayout hl = new HorizontalLayout();
         hl.addComponent(calendario);
-
         hl.addComponent(form);
-        setContent(hl);
+        vl.addComponent(hl);
+        setContent(vl);
 
 
 

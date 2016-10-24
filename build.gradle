@@ -34,6 +34,8 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
 	runtime('com.h2database:h2')
 	compile('org.codehaus.groovy:groovy')
+	// https://mvnrepository.com/artifact/javax.mail/mail
+	compile('org.springframework.boot:spring-boot-starter-mail')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

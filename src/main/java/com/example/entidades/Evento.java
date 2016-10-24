@@ -21,6 +21,8 @@ public class Evento {
     private String descripcion;
     private Date fechaInicio;
     private Date fechaFin;
+    private boolean notificacionEnviada;
+
 
 
     public int getId() {
@@ -61,6 +63,14 @@ public class Evento {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public boolean isNotificacionEnviada() {
+        return notificacionEnviada;
+    }
+
+    public void setNotificacionEnviada(boolean notificacionEnviada) {
+        this.notificacionEnviada = notificacionEnviada;
     }
 
 

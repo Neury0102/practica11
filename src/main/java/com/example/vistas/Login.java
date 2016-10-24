@@ -1,5 +1,6 @@
 package com.example.vistas;
 
+import com.example.servicios.EmailServices;
 import com.example.servicios.EventoServices;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
@@ -17,8 +18,9 @@ import java.util.Date;
 @Theme("valo")
 public class Login extends UI {
 
+    @Autowired
+    EmailServices emailServices;
     @Override
-
     protected void init(VaadinRequest request) {
         VerticalLayout verticalLayout = new VerticalLayout();
         verticalLayout.addComponent(new Label("Login"));
@@ -33,11 +35,11 @@ public class Login extends UI {
 
 
 
+
         Button boton=new Button("Login", new Button.ClickListener() {
             @Override
             public void buttonClick(Button.ClickEvent event) {
-
-                getUI().getPage().setLocation("http://www.google.com");
+                getUI().getPage().setLocation("http://localhost:8080/calendario");
             }
         });
 
