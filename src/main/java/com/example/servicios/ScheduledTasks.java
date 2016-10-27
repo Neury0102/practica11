@@ -27,7 +27,7 @@ public class ScheduledTasks {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    @Scheduled(fixedRate = 5000)
+    @Scheduled(fixedRate = 50000)
     public void reportCurrentTime(){
         GregorianCalendar cal = new GregorianCalendar();
         cal.setTime(new Date());

@@ -1,15 +1,10 @@
 package com.example.vistas;
 
-import com.example.servicios.EmailServices;
-import com.example.servicios.EventoServices;
 import com.vaadin.annotations.Theme;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.spring.annotation.SpringUI;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.*;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Date;
 
 /**
  * Created by Dell_2 on 10/17/2016.
@@ -17,22 +12,19 @@ import java.util.Date;
 @SpringUI(path = "/login")
 @Theme("valo")
 public class Login extends UI {
-
-    @Autowired
-    EmailServices emailServices;
     @Override
     protected void init(VaadinRequest request) {
-        VerticalLayout verticalLayout = new VerticalLayout();
-        verticalLayout.addComponent(new Label("Login"));
+        AbsoluteLayout layout = new AbsoluteLayout();
+        layout.setWidth("1000px");
+        layout.setHeight("500px");
+        Label text = new Label("Login");
+        layout.addComponent(text);
 
         TextField textField = new TextField();
         TextField textField2 = new TextField();
-        // Create a DateField with the default style
-
         textField.setDescription("Ayuda del componente..");
         textField.setInputPrompt("UserName");
         textField2.setInputPrompt("Password");
-
 
 
 
@@ -43,26 +35,18 @@ public class Login extends UI {
             }
         });
 
-        Button boton2=new Button("Registrar", new Button.ClickListener() {
-            @Override
-            public void buttonClick(Button.ClickEvent event) {
-                //Notification.show("Hola ${textField.value}", Notification.Type.HUMANIZED_MESSAGE);
-            }
-        });
+        
 
 
         VerticalLayout hl=new VerticalLayout();
-        hl.addComponent(textField);
-        hl.addComponent(textField2);
-        hl.addComponent(boton);
-        hl.addComponent(boton2);
+        layout.addComponent(text,"left: 860px; top: 25px;");
+        layout.addComponent(textField,"left: 600px; top: 50px;");
+        layout.addComponent(textField2,"left: 600px; top: 100px;");
+        layout.addComponent(boton,"left: 650px; top: 140px;");
 
 
+        hl.addComponent(layout);
 
-
-
-        verticalLayout.addComponent(hl);
-
-        setContent(verticalLayout);
+        setContent(layout);
     }
 }
