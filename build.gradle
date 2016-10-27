@@ -36,6 +36,9 @@ dependencies {
 	compile('org.codehaus.groovy:groovy')
 	// https://mvnrepository.com/artifact/javax.mail/mail
 	compile('org.springframework.boot:spring-boot-starter-mail')
+	// https://mvnrepository.com/artifact/joda-time/joda-time
+	compile group: 'joda-time', name: 'joda-time', version: '2.9.4'
+
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

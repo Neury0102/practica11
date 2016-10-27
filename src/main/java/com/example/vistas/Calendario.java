@@ -2,6 +2,7 @@ package com.example.vistas;
 
 
 import com.example.entidades.Evento;
+import com.example.entidades.Usuario;
 import com.example.repositorio.EventoRepository;
 import com.example.servicios.EventoServices;
 import com.vaadin.annotations.Theme;
@@ -25,7 +26,7 @@ import java.util.Locale;
 
 @SpringUI(path = "/calendario")
 @Theme("valo")
-class PruebaCalendario extends UI {
+class Calendario extends UI {
 
 
     //Utilizando el calendario.
@@ -40,6 +41,11 @@ class PruebaCalendario extends UI {
     BeanItemContainer container;
     @Override
     protected void init(VaadinRequest request) {
+        Usuario usuario = (Usuario)getCurrent().getSession().getAttribute("usuario");
+        if(usuario == null){
+            getUI().getPage().setLocation("http://localhost:8080/login");
+            return;
+        }
         form.setCalendarioUI(this);
 
         calendario = new Calendar();
@@ -56,6 +62,7 @@ class PruebaCalendario extends UI {
                 "descripcion", "fechaInicio", "fechaFin","styleName");
 
         Button save = new Button("Guardar calendario");
+        Button config = new Button("Configuracion");
 
         save.addClickListener(new Button.ClickListener() {
             @Override
@@ -67,26 +74,23 @@ class PruebaCalendario extends UI {
             }
         });
 
-
-
-
-
-
-
+        config.addClickListener(new Button.ClickListener() {
+            @Override
+            public void buttonClick(Button.ClickEvent event) {
+                getUI().getPage().setLocation("http://localhost:8080/configurar");
+            }
+        });
 
         VerticalLayout vl = new VerticalLayout();
-        vl.addComponent(save);
+        HorizontalLayout hl2 = new HorizontalLayout();
+        hl2.addComponent(save);
+        hl2.addComponent(config);
+        vl.addComponent(hl2);
         HorizontalLayout hl = new HorizontalLayout();
         hl.addComponent(calendario);
         hl.addComponent(form);
         vl.addComponent(hl);
         setContent(vl);
-
-
-
-
-
-
     }
 
 

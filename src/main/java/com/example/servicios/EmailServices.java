@@ -21,7 +21,7 @@ import java.util.List;
 @Service
 public class EmailServices {
 
-  public void enviarCorreo(Evento evento){
+  public void enviarCorreo(Evento evento, Usuario usuario){
 
       AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext();
       ctx.register(AppConfig.class);
@@ -31,9 +31,9 @@ public class EmailServices {
       MimeMessageHelper mailMsg = new MimeMessageHelper(mimeMessage);
       try {
           mailMsg.setFrom("practica11spring@gmail.com");
-          mailMsg.setTo("saletamanuel@gmail.com");
+          mailMsg.setTo(usuario.getCorreo());
           mailMsg.setSubject("Un evento esta cercano.");
-          mailMsg.setText("El evento: " +evento.getNombre()+ "esta a punto de iniciar.");
+          mailMsg.setText("Hola, "+usuario.getNombre()+", el evento: " +evento.getNombre()+ " esta a punto de iniciar.");
       } catch (MessagingException e) {
           e.printStackTrace();
       }

@@ -34,27 +34,24 @@ public class UsuarioServices {
         return usuario;
     }
 
-    public List<Usuario> profesoresConApellidos(){
-
-        return usuarioRepository.findAllByApellidoNotNull();
+    public List<Usuario> findAll(){
+        return usuarioRepository.findAll();
     }
 
-    /**
-     *
-     * @param nombre
-     * @return
-     */
-    public List<Usuario> listaProfesorInicia(String nombre){
-        System.out.println("Nombre recibido: "+nombre);
-        return usuarioRepository.findAllByNombreStartingWith(nombre);
+    public Usuario findUsername(String username){
+        return usuarioRepository.findByUsername(username);
     }
 
-    public List<Usuario> listaProfesorIniciaIgnorandoCase(String nombre){
-        System.out.println("Nombre recibido: "+nombre);
-        return usuarioRepository.findAllByNombreStartingWithIgnoreCase(nombre);
+    public Usuario autenticar(String username, String password){
+        Usuario usuario = usuarioRepository.findByUsername(username);
+        if(usuario == null)
+            return null;
+        if( password.equals(usuario.getPassword())){
+            return  usuario;
+        }
+        else
+            return null;
     }
 
-   /* public Usuario profesorPorCedula(String cedula) {
-        return usuarioRepository.consultaProfesor(cedula);
-    }*/
+
 }
